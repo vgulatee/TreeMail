@@ -7,7 +7,7 @@ const app = express(); //Generate new express app
 
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
-    googleClientSecret: keys.googleClientSecret,
+    clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback'
 }, accessToken => {
     console.log(accessToken);
@@ -16,6 +16,9 @@ passport.use(new GoogleStrategy({
 app.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
+
+app.get('/auth/google/callback', passport.authenticate('google'));
+
 
 const PORT = process.env.PORT || 5000; //Web deploy app uses whatever port is dynamically given, if not defaults to por: 5000
 app.listen(PORT);
