@@ -2,6 +2,7 @@ const express = require('express'); //Import express
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 require('./services/passport');
+require('./models/User');
 
 const app = express(); //Generate new express app
 mongoose.connect(keys.mongoURI);
